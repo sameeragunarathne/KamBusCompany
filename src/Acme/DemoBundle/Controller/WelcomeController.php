@@ -15,4 +15,9 @@ class WelcomeController extends Controller
          */
         return $this->render('AcmeDemoBundle:Welcome:index.html.twig');
     }
+    
+    public function helloAction()
+    {
+        return $this->render('AcmeDemoBunde:Welcime:hello.html.twig');
+    }
 }
