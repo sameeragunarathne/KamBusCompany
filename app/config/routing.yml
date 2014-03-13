@@ -1,0 +1,4 @@
+bus_sys_user:
+    resource: "@BusSysUserBundle/Resources/config/routing.yml"
+    prefix:   /
+
