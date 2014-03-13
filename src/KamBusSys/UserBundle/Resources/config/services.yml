@@ -1,0 +1,7 @@
+parameters:
+#    kam_bus_sys_user.example.class: KamBusSys\UserBundle\Example
+
+services:
+#    kam_bus_sys_user.example:
+#        class: %kam_bus_sys_user.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
