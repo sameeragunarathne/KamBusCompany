@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="BusSys\UserBundle\Entity\Trip" table="trip">
+    <indexes>
+      <index name="bus_number" columns="bus_number"/>
+      <index name="route_number" columns="route_number"/>
+    </indexes>
+    <id name="id" type="string" column="id" length="7">
+      <!--<generator strategy="IDENTITY"/>-->
+    </id>
+    <field name="passengerCountSmoking" type="decimal" column="passenger_count_smoking" precision="2" scale="0" nullable="true"/>
+    <field name="passengerCountNonsmoking" type="decimal" column="passenger_count_nonsmoking" precision="2" scale="0" nullable="true"/>
+    <field name="weatherCondition" type="boolean" column="weather_condition" nullable="true"/>
+    <field name="dateandtime" type="datetime" column="dateAndTime" nullable="false"/>
+    <many-to-one field="routeNumber" target-entity="Route">
+      <join-columns>
+        <join-column name="route_number" referenced-column-name="number"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="busNumber" target-entity="Bus">
+      <join-columns>
+        <join-column name="bus_number" referenced-column-name="number"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

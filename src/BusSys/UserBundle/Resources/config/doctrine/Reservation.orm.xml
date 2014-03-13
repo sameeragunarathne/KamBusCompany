@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="BusSys\UserBundle\Entity\Reservation" table="reservation">
+    <indexes>
+      <index name="ticket_no" columns="ticket_no"/>
+      <index name="passenger_id" columns="passenger_id"/>
+      <index name="trip_id" columns="trip_id"/>
+    </indexes>
+    <id name="id" type="string" column="id" length="7">
+      <!--<generator strategy="IDENTITY"/>-->
+    </id>
+    <field name="seatsection" type="boolean" column="seatSection" nullable="true"/>
+    <field name="paymentReceived" type="boolean" column="payment_received" nullable="true"/>
+    <many-to-one field="trip" target-entity="Trip">
+      <join-columns>
+        <join-column name="trip_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="passenger" target-entity="Passenger">
+      <join-columns>
+        <join-column name="passenger_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="ticketNo" target-entity="Ticket">
+      <join-columns>
+        <join-column name="ticket_no" referenced-column-name="number"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

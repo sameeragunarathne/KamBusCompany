@@ -1,0 +1,11 @@
+bus_sys_user_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: BusSysUserBundle:Default:index }
+    
+check_add_data_to_bus_table:
+    pattern:  /check/bus/adddata
+    defaults: { _controller: BusSysUserBundle:DBconnect:bus }
+    
+check_add_data_to_passenger_table:
+    pattern:  /check/passenger/adddata
+    defaults: { _controller: BusSysUserBundle:DBconnect:passenger }

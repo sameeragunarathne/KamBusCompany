@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="BusSys\UserBundle\Entity\Ticket" table="ticket">
+    <indexes>
+      <index name="start" columns="start"/>
+      <index name="destination" columns="destination"/>
+      <index name="trip_id" columns="trip_id"/>
+    </indexes>
+    <id name="number" type="string" column="number" length="7">
+      <!--<generator strategy="IDENTITY"/>-->
+    </id>
+    <field name="fair" type="decimal" column="fair" precision="6" scale="2" nullable="true"/>
+    <many-to-one field="trip" target-entity="Trip">
+      <join-columns>
+        <join-column name="trip_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="destination" target-entity="Station">
+      <join-columns>
+        <join-column name="destination" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="start" target-entity="Station">
+      <join-columns>
+        <join-column name="start" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>
