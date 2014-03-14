@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use BusSys\UserBundle\Entity\Bus;
 use BusSys\UserBundle\Entity\Passenger;
+use BusSys\UserBundle\Entity\Purchased;
 
 class DBconnectController extends Controller
 {
@@ -16,10 +17,14 @@ class DBconnectController extends Controller
     
     public function busAction()
     {
+        $capacitySmoking = 22;
+        $capacityNonsmoking = 18;
+        $number = 'B00015';
+        
         $bus = new Bus();
-        $bus ->setCapacityNonsmoking(15);
-        $bus ->setCapacitySmoking(25);
-        $bus ->setNumber('B00011');
+        $bus ->setCapacityNonsmoking($capacityNonsmoking);
+        $bus ->setCapacitySmoking($capacitySmoking);
+        $bus ->setNumber($number);
         
         $em = $this->getDoctrine()->getEntityManager();
         
@@ -31,12 +36,18 @@ class DBconnectController extends Controller
     
     public function passengerAction ()
     {
+        $id = 'P00015';
+        $initials = 'ABCD';
+        $lastname = 'Perera';
+        $telephoneNumber = '0771234567';
+        $email = 'abcd@gmail.com';
+        
         $passenger = new Passenger();
-        $passenger->setId('P00010');
-        $passenger->setInitials('AAGCK');
-        $passenger->setLastname('Aruma puduma');
-        $passenger->setTelephoneNumber('0723712477');
-        $passenger->setEmail('aagck@gmail.com');
+        $passenger->setId($id);
+        $passenger->setInitials($initials);
+        $passenger->setLastname($lastname);
+        $passenger->setTelephoneNumber($telephoneNumber);
+        $passenger->setEmail($email);
         
         $em = $this->getDoctrine()->getEntityManager();
         
@@ -44,5 +55,34 @@ class DBconnectController extends Controller
         $em->flush();
         
         return $this->render ('BusSysUserBundle:Default:checkAddData.html.twig');
+    }
+    
+    public function purchasedAction ()
+    {
+        $amount = 1245.25;
+        $tripId = 'TR00001';
+        
+        $purchasedObj = new Purchased();
+        $purchasedObj->setAmount($amount);
+        $purchasedObj->setTrip($tripId);
+        
+        $em = $this->getDoctrine()->getEntityManager();
+        
+        $em->persist($purchasedObj);
+        $em->flush();
+        
+        return $this->render ('BusSysUserBundle:Default:checkAddData.html.twig');
+    }
+    
+    public function busCountAction ()
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+        $busCountQuery = $em->createQueryBuilder()
+                ->select('count(number)')
+                ->from('BusSysUserBundle:Bus','number');
+        $query = $busCountQuery->getQuery();
+        $count = $query->getSingleScalarResult();
+        
+        return $this->render ('BusSysUserBundle:Default:busCountCheck.html.twig', array ('count' => $count));
     }
 }

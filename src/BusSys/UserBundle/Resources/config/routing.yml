@@ -9,3 +9,11 @@ check_add_data_to_bus_table:
 check_add_data_to_passenger_table:
     pattern:  /check/passenger/adddata
     defaults: { _controller: BusSysUserBundle:DBconnect:passenger }
+
+check_add_data_to_purchased_table:
+    pattern:  /check/purchased/adddata
+    defaults: { _controller: BusSysUserBundle:DBconnect:purchased }
+    
+check_bus_count:
+    pattern:  /check/busCount
+    defaults: { _controller: BusSysUserBundle:DBconnect:busCount }
