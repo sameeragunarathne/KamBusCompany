@@ -17,3 +17,7 @@ check_add_data_to_purchased_table:
 check_bus_count:
     pattern:  /check/busCount
     defaults: { _controller: BusSysUserBundle:DBconnect:busCount }
+    
+check_bus_smoking_count:
+    pattern:  /check/busSmokingCount
+    defaults: { _controller: BusSysUserBundle:DBconnect:busSmoking }

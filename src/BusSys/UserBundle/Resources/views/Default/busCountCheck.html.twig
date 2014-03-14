@@ -1,2 +1,30 @@
-{# empty Twig template #}
-the bus count is {{count}}
+<!-- this page shows the details of the busses where 
+the number of seats in the smoking section is greater than 
+the number of seats in the nonsmoking section-->
+
+<html>
+    <body>
+        <table>
+            <thead>
+                <tr>
+                    <th>Smoking</th>
+                <th>Non Smoking</th>
+                <th>Number</th>
+                </tr>
+            
+            </thead>
+            <tbody>
+{%for bus in count%}
+<tr>
+{%if bus is iterable%}
+{%for detail in bus%}
+        <td>    {{detail}} </td>  
+
+        {%endfor%}
+{%endif%}
+    </tr>
+{%endfor%}
+            </tbody>
+            </table>
+        </body>
+    </html>
