@@ -21,3 +21,7 @@ check_bus_count:
 check_bus_smoking_count:
     pattern:  /check/busSmokingCount
     defaults: { _controller: BusSysUserBundle:DBconnect:busSmoking }
+    
+check_validate_user:
+    pattern:  /check/validateUser
+    defaults: { _controller: BusSysUserBundle:DBconnect:validate }
